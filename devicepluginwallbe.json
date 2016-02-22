@@ -1,0 +1,30 @@
+{
+    "name": "wallbe plugin",
+    "idName": "wallbe",
+    "id": "7443686c-d8d1-11e5-ab28-27c8befa288b",
+    "vendors": [
+        {
+            "name": "Petring",
+            "idName": "wallbe",
+            "id": "7c2a7dea-d8d1-11e5-b55c-aba733184e27",
+            "deviceClasses": [
+                {
+                    "name": "wallbe eco2.0",
+                    "idName": "wallbe",
+                    "deviceClassId": "844fad60-d8d1-11e5-be08-d75ba4ca4853",
+                    "createMethods": ["user"],
+                    "basicTags": [
+                        "Device"
+                    ],
+                    "paramTypes": [
+                        {
+                            "name": "name",
+                            "type": "QString",
+                            "defaultValue": "wallb-e device default name"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
