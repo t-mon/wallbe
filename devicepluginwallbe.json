@@ -1,21 +1,20 @@
 {
     "name": "wallbe plugin",
     "idName": "Wallbe",
-    "id": "7443686c-d8d1-11e5-ab28-27c8befa288b",
+    "id": "0de5bbd2-0dad-4727-9a17-3ee149106048",
     "vendors": [
         {
             "name": "Petring",
-            "idName": "Wallbe",
-            "id": "7c2a7dea-d8d1-11e5-b55c-aba733184e27",
+            "idName": "petring",
+            "id": "831b4b87-0a6c-4d51-b055-967bb6e5fab5",
             "deviceClasses": [
                 {
                     "name": "wallbe eco2.0",
-                    "idName": "Wallbe",
-                    "deviceClassId": "844fad60-d8d1-11e5-be08-d75ba4ca4853",
+                    "idName": "wallbe",
+                    "deviceClassId": "ef4869de-b219-4bf8-b73a-fac9a85e4071",
                     "createMethods": ["user"],
                     "basicTags": [
                         "Device",
-                        "EV",
                         "Energy"
                     ],
                     "paramTypes": [
@@ -34,15 +33,15 @@
                     ],
                     "stateTypes":[
                         {
-                            "id": "9328693e-9054-47bc-b95f-ae3e42d50b8b",
+                            "id": "8dc2fef8-d16e-422a-8498-456b818f5752",
                             "idName": "chargeTime",
                             "name": "Charging Time",
-                            "unit": "UnixTime",
+                            "unit": "Minutes",
                             "type": "int",
                             "defaultValue": 0
                         },
                         {
-                            "id": "8bf2be26-da2b-11e5-bea0-5b1a7c318924",
+                            "id": "2a95c4fb-9a15-4788-ae09-d34e71314da6",
                             "idName": "evStatus",
                             "name": "EV Status",
                             "type": "QString",
@@ -57,26 +56,12 @@
                             "defaultValue": "F - Supply equipment not available"
                         },
                         {
-                            "id": "355496b8-da2e-11e5-864f-9f8792e8d1c9",
-                            "idName": "power",
-                            "name": "power",
+                            "id": "226db561-3dc1-4fe4-8d9f-bd9e2fa3da55",
+                            "idName": "charging",
+                            "name": "charging",
                             "type": "bool",
-                            "defaultValue": false
-                        }
-
-                    ],
-                    "actionTypes": [
-                        {
-                            "id": "b445dfc0-da2b-11e5-8643-bb4078b803bf",
-                            "name": "Start Charging",
-                            "idName": "startCharging",
-                            "paramTypes": [
-                                {
-                                    "name": "power",
-                                    "type": "bool",
-                                    "defaultValue": false
-                                }
-                            ]
+                            "defaultValue": false,
+                            "writable": true
                         }
                     ]
                 }

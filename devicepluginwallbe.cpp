@@ -66,19 +66,19 @@ DeviceManager::DeviceSetupStatus DevicePluginWallbe::setupDevice(Device *device)
 
 DeviceManager::DeviceError DevicePluginWallbe::executeAction(Device *device, const Action &action)
 {
-    if (device->deviceClassId() == WallbeDeviceClassId ) {
+    if (device->deviceClassId() == wallbeDeviceClassId ) {
 
         // check if this is the "set power" action
-        if (action.actionTypeId() == startChargingActionTypeId) {
+        if (action.actionTypeId() == chargingActionTypeId) {
 
             // get the param value
-            Param powerParam = action.param("power");
-            bool power = powerParam.value().toBool();
+            Param chargingParam = action.param("power");
+            bool power = chargingParam.value().toBool();
 
             qCDebug(dcWallbe) << "start Charging button" << device->paramValue("name").toString() << "set power to" << power;
 
             // Set the "power" state
-            device->setStateValue(powerStateTypeId, power);
+            device->setStateValue(chargingStateTypeId, power);
 
             return DeviceManager::DeviceErrorNoError;
         }
