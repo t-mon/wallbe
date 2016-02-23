@@ -1,26 +1,82 @@
 {
     "name": "wallbe plugin",
-    "idName": "wallbe",
+    "idName": "Wallbe",
     "id": "7443686c-d8d1-11e5-ab28-27c8befa288b",
     "vendors": [
         {
             "name": "Petring",
-            "idName": "wallbe",
+            "idName": "Wallbe",
             "id": "7c2a7dea-d8d1-11e5-b55c-aba733184e27",
             "deviceClasses": [
                 {
                     "name": "wallbe eco2.0",
-                    "idName": "wallbe",
+                    "idName": "Wallbe",
                     "deviceClassId": "844fad60-d8d1-11e5-be08-d75ba4ca4853",
                     "createMethods": ["user"],
                     "basicTags": [
-                        "Device"
+                        "Device",
+                        "EV",
+                        "Energy"
                     ],
                     "paramTypes": [
                         {
                             "name": "name",
                             "type": "QString",
-                            "defaultValue": "wallb-e device default name"
+                            "inputType": "TextLine",
+                            "defaultValue": "EV Charger"
+                        },
+                        {
+                             "name": "IP Adress",
+                             "type": "QString",
+                             "inputType": "IPv4Address",
+                             "defaultValue": "192.168.0.8"
+                        }
+                    ],
+                    "stateTypes":[
+                        {
+                            "id": "9328693e-9054-47bc-b95f-ae3e42d50b8b",
+                            "idName": "chargeTime",
+                            "name": "Charging Time",
+                            "unit": "UnixTime",
+                            "type": "int",
+                            "defaultValue": 0
+                        },
+                        {
+                            "id": "8bf2be26-da2b-11e5-bea0-5b1a7c318924",
+                            "idName": "evStatus",
+                            "name": "EV Status",
+                            "type": "QString",
+                            "possibleValues": [
+                                "A - No Car plugged in",
+                                "B - Supply equipment not yet ready",
+                                "C - Ready to charge",
+                                "D - Ready to charge, ventilation needed",
+                                "E - Short circuit detected",
+                                "F - Supply equipment not available"
+                            ],
+                            "defaultValue": "F - Supply equipment not available"
+                        },
+                        {
+                            "id": "355496b8-da2e-11e5-864f-9f8792e8d1c9",
+                            "idName": "power",
+                            "name": "power",
+                            "type": "bool",
+                            "defaultValue": false
+                        }
+
+                    ],
+                    "actionTypes": [
+                        {
+                            "id": "b445dfc0-da2b-11e5-8643-bb4078b803bf",
+                            "name": "Start Charging",
+                            "idName": "startCharging",
+                            "paramTypes": [
+                                {
+                                    "name": "power",
+                                    "type": "bool",
+                                    "defaultValue": false
+                                }
+                            ]
                         }
                     ]
                 }

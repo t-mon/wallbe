@@ -40,7 +40,8 @@ DevicePluginWallbe::DevicePluginWallbe()
  */
 DeviceManager::HardwareResources DevicePluginWallbe::requiredHardware() const
 {
-    return DeviceManager::HardwareResourceNone;
+    return DeviceManager::HardwareResourceTimer |
+            DeviceManager::HardwareResourceNetworkManager;
 }
 
 /* This method will be called from the devicemanager while he
@@ -54,6 +55,44 @@ DeviceManager::DeviceSetupStatus DevicePluginWallbe::setupDevice(Device *device)
     qCDebug(dcWallbe) << "The new device has the DeviceId" << device->id().toString();
     qCDebug(dcWallbe) << device->params();
 
+
+
+    mb = modbus_new_tcp("192.168.0.8", 502);
+    modbus_connect(mb);
+
     return DeviceManager::DeviceSetupStatusSuccess;
 }
 
+
+DeviceManager::DeviceError DevicePluginWallbe::executeAction(Device *device, const Action &action)
+{
+    if (device->deviceClassId() == WallbeDeviceClassId ) {
+
+        // check if this is the "set power" action
+        if (action.actionTypeId() == startChargingActionTypeId) {
+
+            // get the param value
+            Param powerParam = action.param("power");
+            bool power = powerParam.value().toBool();
+
+            qCDebug(dcWallbe) << "start Charging button" << device->paramValue("name").toString() << "set power to" << power;
+
+            // Set the "power" state
+            device->setStateValue(powerStateTypeId, power);
+
+            return DeviceManager::DeviceErrorNoError;
+        }
+        return DeviceManager::DeviceErrorActionTypeNotFound;
+    }
+    return DeviceManager::DeviceErrorDeviceClassNotFound;
+}
+
+
+
+void DevicePluginWallbe::deviceRemoved(Device *device)
+{
+   modbus_close(mb);
+   modbus_free(mb);
+   qCDebug(dcWallbe) << "Remove device" << device->paramValue("name").toString();
+
+}

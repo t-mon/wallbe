@@ -24,17 +24,28 @@
 #include "plugin/deviceplugin.h"
 #include "devicemanager.h"
 
+#include <modbus/modbus.h>
+
+
 class DevicePluginWallbe : public DevicePlugin
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "guru.guh.DevicePlugin" FILE "devicepluginwallbe.json")
     Q_INTERFACES(DevicePlugin)
 
+    modbus_t *mb;
+    uint16_t tab_reg[32];
+
 public:
     DevicePluginWallbe();
 
     DeviceManager::HardwareResources requiredHardware() const override;
     DeviceManager::DeviceSetupStatus setupDevice(Device *device) override;
+
+    void deviceRemoved(Device *device) override;
+
+    DeviceManager::DeviceError executeAction(Device *device, const Action &action) override;
+
 };
 
 #endif // DEVICEPLUGINWALLBE_H
